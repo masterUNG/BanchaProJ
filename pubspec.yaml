@@ -38,6 +38,7 @@ dependencies:
   get: ^4.6.6
   getwidget: ^4.0.0
   mask_text_input_formatter: ^2.5.0
+  dio: ^5.3.3
 
 dev_dependencies:
   flutter_test:
