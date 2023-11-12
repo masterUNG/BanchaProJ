@@ -1,9 +1,23 @@
 import 'dart:io';
 
+import 'package:banchaproj/states/pin_code_check.dart';
 import 'package:banchaproj/states/spalash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+
+var getPages = <GetPage<dynamic>>[
+  GetPage(
+    name: '/splash',
+    page: () => const SplashScreen(),
+  ),
+  GetPage(
+    name: '/pincode',
+    page: () => const PinCodeCheck(),
+  ),
+];
+
+String? keyPage;
 
 Future<void> main() async {
   HttpOverrides.global = MyHttpOverride();
@@ -13,7 +27,15 @@ Future<void> main() async {
     var data = await GetStorage().read('pinCode');
     print('data ที่ได้จาก main.dart ----> $data');
 
-    runApp(const MyApp());
+    if (data == null) {
+      keyPage = '/splash';
+       runApp(const MyApp());
+    } else {
+      keyPage = '/pincode';
+       runApp(const MyApp());
+    }
+
+   
   });
 }
 
@@ -23,7 +45,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: SplashScreen(),
+      // home: SplashScreen(),
+      getPages: getPages,
+      initialRoute: keyPage,
     );
   }
 }
