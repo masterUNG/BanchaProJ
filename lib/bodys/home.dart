@@ -1,3 +1,4 @@
+import 'package:banchaproj/states/show_profile.dart';
 import 'package:banchaproj/states/spalash_screen.dart';
 import 'package:banchaproj/states/test.dart';
 import 'package:banchaproj/utility/app_constant.dart';
@@ -39,7 +40,7 @@ class _HomeState extends State<Home> {
   ];
 
   var widgets = <Widget>[
-    const Test(),
+    const ShowProfile(),
     const Test(),
     const Test(),
     const Test(),
