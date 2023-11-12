@@ -1,3 +1,4 @@
+import 'package:banchaproj/models/user_model.dart';
 import 'package:get/get.dart';
 
 class AppController extends GetxController {
@@ -6,4 +7,6 @@ class AppController extends GetxController {
   RxList<String> pins = <String>[].obs;
 
   RxInt indexBody = 0.obs;
+
+  RxList<UserModel> userModelLogins = <UserModel>[].obs;
 }

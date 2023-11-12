@@ -4,6 +4,7 @@ import 'package:banchaproj/bodys/news.dart';
 import 'package:banchaproj/bodys/profile.dart';
 import 'package:banchaproj/utility/app_constant.dart';
 import 'package:banchaproj/utility/app_controller.dart';
+import 'package:banchaproj/utility/app_service.dart';
 import 'package:banchaproj/widgets/widget_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -44,6 +45,9 @@ class _MainHomeState extends State<MainHome> {
   @override
   void initState() {
     super.initState();
+
+    AppService().processFindUserModelLogin();
+
     for (var i = 0; i < titles.length; i++) {
       items.add(
         BottomNavigationBarItem(icon: Icon(iconDatas[i]), label: titles[i]),
@@ -62,12 +66,12 @@ class _MainHomeState extends State<MainHome> {
           items: items,
           currentIndex: appController.indexBody.value,
           unselectedItemColor: AppConstant.primaryColor,
-          selectedItemColor: Colors.deepOrange,
+          selectedItemColor: Colors.white,
           type: BottomNavigationBarType.fixed,
           onTap: (value) {
             appController.indexBody.value = value;
           },
-          backgroundColor: Colors.grey.shade200,
+          backgroundColor: AppConstant.bgColor,
         );
       }),
     );

@@ -1,6 +1,7 @@
 import 'package:banchaproj/models/user_model.dart';
 import 'package:banchaproj/states/pin_code_page.dart';
 import 'package:banchaproj/utility/app_constant.dart';
+import 'package:banchaproj/utility/app_controller.dart';
 import 'package:banchaproj/utility/app_dialog.dart';
 import 'package:banchaproj/widgets/widget_button.dart';
 import 'package:banchaproj/widgets/widget_text.dart';
@@ -10,6 +11,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class AppService {
+  AppController appController = Get.put(AppController());
+
   Future<void> checkLogin({
     required String borndate,
     required String cid,
@@ -64,5 +67,20 @@ class AppService {
     await GetStorage().write('pinCode', pinCode);
     await GetStorage().write('borndata', borndate);
     await GetStorage().write('cid', cid);
+  }
+
+  Future<void> processFindUserModelLogin() async {
+    String bonddate = GetStorage().read('borndata');
+    String cid = GetStorage().read('cid');
+
+    String urlApi =
+        'http://bbnet-host.com/api/coop/semaudon_member_idcoop.php?borndate=$bonddate&cid=$cid';
+
+    await Dio().get(urlApi).then((value) {
+      for (var element in value.data) {
+        UserModel userModel = UserModel.fromJson(element);
+        appController.userModelLogins.add(userModel);
+      }
+    });
   }
 }
