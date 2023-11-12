@@ -1,4 +1,5 @@
 import 'package:banchaproj/utility/app_constant.dart';
+import 'package:banchaproj/utility/app_service.dart';
 import 'package:banchaproj/widgets/widget_button.dart';
 import 'package:banchaproj/widgets/widget_form.dart';
 import 'package:banchaproj/widgets/widget_image_asset.dart';
@@ -133,8 +134,10 @@ class _AuthenState extends State<Authen> {
                             );
                           } else {}
 
-                          print('idCard ---> $idCard');
-                          print('bond ---> $bond');
+                          print('###### idCard ---> $idCard');
+                          print('###### bond ---> $bond');
+
+                          AppService().checkLogin(borndate: bond, cid: idCard);
                         }
                       },
                     ),
