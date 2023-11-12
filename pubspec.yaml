@@ -39,6 +39,8 @@ dependencies:
   getwidget: ^4.0.0
   mask_text_input_formatter: ^2.5.0
   dio: ^5.3.3
+  flutter_pin_code_widget: ^0.1.0
+  get_storage: ^2.1.1
 
 dev_dependencies:
   flutter_test:
