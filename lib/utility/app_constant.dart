@@ -5,6 +5,7 @@ class AppConstant {
   static Color primaryColor = const Color.fromARGB(255, 63, 176, 69);
 
   static String urlWebView = 'https://www.facebook.com';
+  static String urlAPIimage = 'https://jsonplaceholder.typicode.com/photos';
 
   BoxDecoration curveBorder() => BoxDecoration(
       borderRadius: BorderRadius.circular(20), color: primaryColor);

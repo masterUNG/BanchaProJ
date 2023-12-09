@@ -1,3 +1,4 @@
+import 'package:banchaproj/models/image_model.dart';
 import 'package:banchaproj/models/user_model.dart';
 import 'package:banchaproj/states/pin_code_page.dart';
 import 'package:banchaproj/utility/app_constant.dart';
@@ -18,7 +19,7 @@ class AppService {
     required String cid,
   }) async {
     String urlApi =
-        'http://bbnet-host.com/api/coop/semaudon_member_idcoop.php?borndate=$borndate&cid=$cid';
+        'https://bbnet-host.com/api/coop/semaudon_member_idcoop.php?borndate=$borndate&cid=$cid';
 
     print('##### urlApi ----> $urlApi');
 
@@ -74,12 +75,21 @@ class AppService {
     String cid = GetStorage().read('cid');
 
     String urlApi =
-        'http://bbnet-host.com/api/coop/semaudon_member_idcoop.php?borndate=$bonddate&cid=$cid';
+        'https://bbnet-host.com/api/coop/semaudon_member_idcoop.php?borndate=$bonddate&cid=$cid';
 
     await Dio().get(urlApi).then((value) {
       for (var element in value.data) {
         UserModel userModel = UserModel.fromJson(element);
         appController.userModelLogins.add(userModel);
+      }
+    });
+  }
+
+  Future<void> processReadImage() async {
+    await Dio().get(AppConstant.urlAPIimage).then((value) {
+      for (var element in value.data) {
+        ImageModel imageModel = ImageModel.fromMap(element);
+        appController.imageModels.add(imageModel);
       }
     });
   }

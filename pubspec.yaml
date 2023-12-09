@@ -42,6 +42,7 @@ dependencies:
   flutter_pin_code_widget: ^0.1.0
   get_storage: ^2.1.1
   webview_flutter: ^4.4.2
+  flutter_image_slideshow: ^0.1.6
 
 dev_dependencies:
   flutter_test:
