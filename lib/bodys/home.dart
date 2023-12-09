@@ -1,12 +1,14 @@
 import 'package:banchaproj/states/show_profile.dart';
-import 'package:banchaproj/states/spalash_screen.dart';
 import 'package:banchaproj/states/test.dart';
 import 'package:banchaproj/utility/app_constant.dart';
 import 'package:banchaproj/utility/app_controller.dart';
+import 'package:banchaproj/utility/app_dialog.dart';
+import 'package:banchaproj/widgets/widget_button.dart';
 import 'package:banchaproj/widgets/widget_image_asset.dart';
 import 'package:banchaproj/widgets/widget_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -36,7 +38,7 @@ class _HomeState extends State<Home> {
     'Title1',
     'Title2',
     'Title3',
-    'Title4',
+    'ออกจากระบบ',
   ];
 
   var widgets = <Widget>[
@@ -103,7 +105,30 @@ class _HomeState extends State<Home> {
                               crossAxisCount: 3),
                       itemBuilder: (context, index) => InkWell(
                         onTap: () {
-                          Get.to(widgets[index]);
+                          if (index == widgets.length - 1) {
+                            AppDialog().normalDialog(
+                                titleWidget:
+                                    const WidgetText(data: 'ออกจากระบบ'),
+                                contentWidget: const WidgetText(
+                                    data:
+                                        'ระบบจะลบทุกอย่างที่คุณบันทึกไว้ โปรด Confirm เพื่อลบ'),
+                                firstActionWidget: WidgetButton(
+                                  data: 'Comfirm',
+                                  pressFunc: () async {
+                                    await GetStorage()
+                                        .erase()
+                                        .then((value) => Get.offAllNamed('/splash'));
+                                  },
+                                ),
+                                actionWidget: WidgetButton(
+                                  data: 'Cancel',
+                                  pressFunc: () {
+                                    Get.back();
+                                  },
+                                ));
+                          } else {
+                            Get.to(widgets[index]);
+                          }
                         },
                         child: Card(
                           child: Column(

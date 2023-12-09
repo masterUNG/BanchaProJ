@@ -7,12 +7,14 @@ class AppDialog {
     required Widget titleWidget,
     Widget? contentWidget,
     Widget? actionWidget,
+    Widget? firstActionWidget,
   }) {
     Get.dialog(
       AlertDialog(
         title: titleWidget,
         content: contentWidget,
         actions: [
+          firstActionWidget ?? const SizedBox(),
           actionWidget ??
               WidgetButton(
                 data: 'OK',

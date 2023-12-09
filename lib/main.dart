@@ -24,10 +24,13 @@ Future<void> main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init().then((value) async {
-    var data = await GetStorage().read('pinCode');
-    print('data ที่ได้จาก main.dart ----> $data');
 
-    if (data == null) {
+    var pinCode = await GetStorage().read('pinCode');
+    var borndata = await GetStorage().read('borndata');
+    var cid = await GetStorage().read('cid');
+    print('data ที่ได้จาก main.dart ----> $pinCode, $borndata $cid');
+
+    if (pinCode == null) {
       keyPage = '/splash';
        runApp(const MyApp());
     } else {

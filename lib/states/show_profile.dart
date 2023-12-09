@@ -2,7 +2,6 @@
 import 'package:banchaproj/utility/app_controller.dart';
 import 'package:flutter/material.dart';
 
-import 'package:banchaproj/models/user_model.dart';
 import 'package:banchaproj/widgets/widget_text.dart';
 import 'package:get/get.dart';
 

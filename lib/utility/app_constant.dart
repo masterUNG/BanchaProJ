@@ -4,6 +4,8 @@ class AppConstant {
   static Color bgColor = const Color.fromARGB(255, 48, 127, 52);
   static Color primaryColor = const Color.fromARGB(255, 63, 176, 69);
 
+  static String urlWebView = 'https://www.facebook.com';
+
   BoxDecoration curveBorder() => BoxDecoration(
       borderRadius: BorderRadius.circular(20), color: primaryColor);
 
